@@ -64,3 +64,21 @@ jobs:
           VITE_BACKEND_URL: https://api.example.invalid
           VITE_PUBLIC_URL: https://frontend.example.invalid
         run: npm run build
+
+  backend-build:
+    name: Type-check Maxun backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install backend dependencies
+        run: |
+          cp package.backend.json package.json
+          npm install --legacy-peer-deps --no-audit --no-fund
+      - name: Compile backend
+        run: npm run build:server
