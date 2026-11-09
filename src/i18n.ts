@@ -8,9 +8,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: ['cs', 'en'],
     debug: import.meta.env.DEV,
-    supportedLngs: ['en', 'es', 'ja', 'zh', 'de', 'tr', 'ko', 'he', 'az'],
+    supportedLngs: ['cs', 'en', 'es', 'ja', 'zh', 'de', 'tr', 'ko', 'he', 'az'],
     interpolation: {
       escapeValue: false, // React already escapes
     },

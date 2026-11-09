@@ -32,7 +32,7 @@ import { AuthContext } from '../../context/auth';
 import { SaveRecording } from '../recorder/SaveRecording';
 import DiscordIcon from '../icons/DiscordIcon';
 import { apiUrl } from '../../apiConfig';
-import MaxunLogo from "../../assets/maxunlogo.png";
+import { BrandLockup } from "../branding/BrandLockup";
 import { useThemeMode } from '../../context/theme-provider';
 import packageJson from "../../../package.json"
 
@@ -217,8 +217,12 @@ export const NavBar: React.FC<NavBarProps> = ({
           cursor: 'pointer'
         }}
           onClick={() => navigate('/')}>
-          <img src={MaxunLogo} width={52} height={45} style={{ borderRadius: '5px', margin: '5px 0px 5px 8px' }} />
-          <div style={{ padding: '13px' }}><ProjectName mode={darkMode ? 'dark' : 'light'}>{t('navbar.project_name')}</ProjectName></div>
+          <div style={{ margin: '5px 12px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3 }}>
+            <BrandLockup compact dark={darkMode} />
+            <span style={{ fontSize: 10, fontWeight: 650, letterSpacing: '0.11em', color: darkMode ? '#a6c3cb' : '#647b86' }}>
+              DATOVÉ A AUTOMATIZAČNÍ CENTRUM
+            </span>
+          </div>
           <Chip
             label={`${currentVersion}`}
             color="primary"
@@ -311,6 +315,14 @@ export const NavBar: React.FC<NavBarProps> = ({
                         }}
                       >
                         English
+                      </MenuItem>
+<MenuItem
+                        onClick={() => {
+                          changeLanguage("cs");
+                          handleMenuClose();
+                        }}
+                      >
+                        Čeština
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
@@ -440,6 +452,14 @@ export const NavBar: React.FC<NavBarProps> = ({
                 >
                   English
                 </MenuItem>
+<MenuItem
+                  onClick={() => {
+                    changeLanguage("cs");
+                    handleMenuClose();
+                  }}
+                >
+                  Čeština
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     changeLanguage("es");
@@ -528,11 +548,6 @@ const NavBarWrapper = styled.div<{ mode: 'light' | 'dark' }>`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid ${({ mode }) => (mode === 'dark' ? '#000000ff' : '#e0e0e0')};
-`;
-
-const ProjectName = styled.b<{ mode: 'light' | 'dark' }>`
-  color: ${({ mode }) => (mode === 'dark' ? '#ffffff' : '#3f4853')};
-  font-size: 1.2em;
 `;
 
 const NavBarRight = styled.div`

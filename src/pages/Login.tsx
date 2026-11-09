@@ -8,7 +8,7 @@ import { apiUrl } from "../apiConfig";
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { useThemeMode } from "../context/theme-provider";
-import MaxunLogo from "../assets/maxunlogo.png";
+import { BrandLockup } from "../components/branding/BrandLockup";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -88,8 +88,8 @@ const Login = () => {
         onSubmit={submitForm}
         sx={{
           textAlign: "center",
-          backgroundColor: darkMode ? "#121111ff" : "#ffffff",
-          color: darkMode ? "#ffffff" : "#333333",
+          backgroundColor: darkMode ? "#143247" : "#FFFFFF",
+          color: darkMode ? "#FFFFFF" : "#183B56",
           padding: 3.5,
           borderRadius: 5,
           boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.2), 0px -5px 10px rgba(0, 0, 0, 0.15)",
@@ -100,8 +100,11 @@ const Login = () => {
           width: "100%",
         }}
       >
-        <img src={MaxunLogo} alt="logo" height={70} width={80} 
-        style={{ marginBottom: 10, borderRadius: "20%", alignItems: "center" }} />
+        <BrandLockup dark={darkMode} />
+        <Typography variant="h6" sx={{ mt: 2, mb: 0.6, fontWeight: 750 }}>Datové a automatizační centrum</Typography>
+        <Typography variant="body2" sx={{ mb: 2, color: darkMode ? '#A5B2BC' : '#697985', maxWidth: 360 }}>
+          Interní prostředí pro projekty Mlžidla.cz a výrobu HolmTec.
+        </Typography>
         <TextField
           fullWidth
           label={t('login.email')}
@@ -143,11 +146,16 @@ const Login = () => {
             t('login.button')
           )}
         </Button>
-        <Typography variant="body2" align="center">
-          {t('login.register_prompt')}{" "}
-          <Link to="/register" style={{ textDecoration: "none", color: "#ff33cc" }}>
-            {t('login.register_link')}
-          </Link>
+        {(!import.meta.env.PROD || import.meta.env.VITE_ALLOW_REGISTRATION === 'true') && (
+          <Typography variant="body2" align="center">
+            {t('login.register_prompt')}{" "}
+            <Link to="/register" style={{ textDecoration: "none", color: "#0C98A7" }}>
+              {t('login.register_link')}
+            </Link>
+          </Typography>
+        )}
+        <Typography variant="caption" sx={{ mt: 2, color: darkMode ? '#9fb6c1' : '#6f8290' }}>
+          Interní systém • Powered by Maxun (AGPL-3.0)
         </Typography>
       </Box>
     </Box>

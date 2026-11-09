@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "project_name": "Datové centrum",
+    "notifications": {
+      "success": {
+        "logout": "Úspěšně odhlášeno"
+      },
+      "errors": {
+        "logout": {
+          "unauthorized": "K této akci nemáte oprávnění",
+          "server": "Chyba serveru při odhlašování",
+          "network": "Chyba spojení při odhlašování",
+          "unknown": "Při odhlašování nastala chyba"
+        }
+      }
+    },
+    "upgrade": {
+      "button": "Aktualizace",
+      "modal": {
+        "new_version_available": "Je dostupná nová verze technologie Maxun: {{version}}."
+      }
+    },
+    "menu_items": {
+      "logout": "Odhlásit se",
+      "language": "Jazyk"
+    },
+    "recording": {
+      "discard": "Zahodit nahrávání"
+    }
+  },
+  "login": {
+    "title": "Přihlášení do datového centra",
+    "email": "E-mail",
+    "password": "Heslo",
+    "button": "Přihlásit se",
+    "loading": "Přihlašování…",
+    "register_prompt": "Nemáte účet?",
+    "register_link": "Registrace",
+    "error": {
+      "generic": "Přihlášení se nezdařilo. Zkuste to znovu."
+    }
+  },
+  "register": {
+    "title": "Vytvořit účet",
+    "email": "E-mail",
+    "password": "Heslo",
+    "button": "Registrovat se",
+    "register_prompt": "Máte již účet?",
+    "login_link": "Přihlásit se",
+    "error": {
+      "generic": "Registrace se nezdařila."
+    }
+  },
+  "mainmenu": {
+    "recordings": "Roboti",
+    "runs": "Spuštění",
+    "proxy": "Proxy",
+    "apikey": "API klíč"
+  }
+}

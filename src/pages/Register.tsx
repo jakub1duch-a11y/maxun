@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { Box, Typography, TextField, Button, CircularProgress } from "@mui/material";
 import { useGlobalInfoStore } from "../context/globalInfo";
@@ -8,7 +8,7 @@ import { apiUrl } from "../apiConfig";
 import { useThemeMode } from "../context/theme-provider";
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
-import MaxunLogo from "../assets/maxunlogo.png";
+import { BrandLockup } from "../components/branding/BrandLockup";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -64,6 +64,10 @@ const Register = () => {
     }
   };
 
+  if (import.meta.env.PROD && import.meta.env.VITE_ALLOW_REGISTRATION !== 'true') {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <Box
       sx={{
@@ -81,8 +85,8 @@ const Register = () => {
         onSubmit={submitForm}
         sx={{
           textAlign: "center",
-          backgroundColor: darkMode ? "#121111ff" : "#ffffff",
-          color: darkMode ? "#ffffff" : "#333333",
+          backgroundColor: darkMode ? "#143247" : "#FFFFFF",
+          color: darkMode ? "#FFFFFF" : "#183B56",
           padding: 3.5,
           borderRadius: 5,
           boxShadow:
@@ -94,17 +98,8 @@ const Register = () => {
           width: "100%",
         }}
       >
-        <img
-          src={MaxunLogo}
-          alt="logo"
-          height={70} 
-          width={80}
-          style={{
-            marginBottom: 10,
-            borderRadius: "20%",
-            alignItems: "center",
-          }}
-        />
+        <BrandLockup dark={darkMode} />
+        <Typography variant="h6" sx={{ mt: 2, mb: 2, fontWeight: 750 }}>Registrace do datového centra</Typography>
         <TextField
           fullWidth
           label={t('register.email')}
@@ -152,7 +147,7 @@ const Register = () => {
           sx={{ color: darkMode ? "#ffffff" : "#333333" }}
         >
           {t('register.register_prompt')}{" "}
-          <Link to="/login" style={{ textDecoration: "none", color: "#ff33cc" }}>
+          <Link to="/login" style={{ textDecoration: "none", color: "#0C98A7" }}>
             {t('register.login_link')}
           </Link>
         </Typography>
