@@ -1,0 +1,143 @@
+# Maxun / Mlžidla.cz × HolmTec
+# Deployment proposal ONLY. Apply after reviewing Render pricing, secrets, and smoke tests.
+# This creates separate resources and does not change the Mlžidla.cz website.
+databases:
+  - name: maxun-holmtec-postgres
+    region: frankfurt
+    plan: basic-1gb
+    postgresMajorVersion: "16"
+    ipAllowList: []
+
+services:
+  - type: pserv
+    name: maxun-holmtec-minio
+    region: frankfurt
+    plan: starter
+    runtime: image
+    image:
+      url: docker.io/minio/minio:latest
+    dockerCommand: server /data --console-address ":9001"
+    disk:
+      name: maxun-minio-files
+      mountPath: /data
+      sizeGB: 10
+    envVars:
+      - key: MINIO_ROOT_USER
+        generateValue: true
+      - key: MINIO_ROOT_PASSWORD
+        generateValue: true
+
+  - type: pserv
+    name: maxun-holmtec-browser
+    region: frankfurt
+    plan: standard
+    runtime: docker
+    dockerfilePath: ./browser/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: BROWSER_WS_PORT
+        value: "3001"
+      - key: BROWSER_HEALTH_PORT
+        value: "3002"
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: maxun-holmtec-api
+    region: frankfurt
+    plan: 2c-8g
+    runtime: docker
+    dockerfilePath: ./Dockerfile.backend
+    dockerContext: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_PORT
+        value: "10000"
+      - key: PORT
+        value: "10000"
+      - key: ALLOW_PUBLIC_SIGNUP
+        value: "false"
+      - key: MAXUN_TELEMETRY
+        value: "false"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: maxun-holmtec-postgres
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: maxun-holmtec-postgres
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: maxun-holmtec-postgres
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: maxun-holmtec-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: maxun-holmtec-postgres
+          property: password
+      - key: MINIO_ENDPOINT
+        fromService:
+          type: pserv
+          name: maxun-holmtec-minio
+          property: host
+      - key: MINIO_PORT
+        value: "9000"
+      - key: MINIO_ACCESS_KEY
+        fromService:
+          type: pserv
+          name: maxun-holmtec-minio
+          envVarKey: MINIO_ROOT_USER
+      - key: MINIO_SECRET_KEY
+        fromService:
+          type: pserv
+          name: maxun-holmtec-minio
+          envVarKey: MINIO_ROOT_PASSWORD
+      - key: BROWSER_WS_HOST
+        fromService:
+          type: pserv
+          name: maxun-holmtec-browser
+          property: host
+      - key: BROWSER_WS_PORT
+        value: "3001"
+      - key: PUBLIC_URL
+        sync: false
+      - key: BACKEND_URL
+        sync: false
+      - key: MINIO_PUBLIC_URL
+        sync: false
+
+  - type: web
+    name: maxun-holmtec-ui
+    region: frankfurt
+    plan: starter
+    runtime: docker
+    dockerfilePath: ./Dockerfile.frontend
+    dockerContext: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_PORT
+        value: "10000"
+      - key: PORT
+        value: "10000"
+      - key: VITE_ALLOW_REGISTRATION
+        value: "false"
+      - key: PUBLIC_URL
+        sync: false
+      - key: VITE_PUBLIC_URL
+        sync: false
+      - key: BACKEND_URL
+        sync: false
+      - key: VITE_BACKEND_URL
+        sync: false
