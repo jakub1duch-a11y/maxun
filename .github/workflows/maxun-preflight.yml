@@ -43,3 +43,24 @@ jobs:
         run: |
           echo "Compose syntax OK. No Docker images were built or deployed."
           echo "Before production: configure secrets, build fork-specific images, run smoke and security tests."
+
+  frontend-build:
+    name: Build branded Maxun frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install frontend dependencies
+        run: |
+          cp package.frontend.json package.json
+          npm install --legacy-peer-deps --no-audit --no-fund
+      - name: Build client
+        env:
+          VITE_BACKEND_URL: https://api.example.invalid
+          VITE_PUBLIC_URL: https://frontend.example.invalid
+        run: npm run build
