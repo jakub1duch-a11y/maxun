@@ -35,17 +35,17 @@ select:-webkit-autofill:focus {
 }
 
 a {
-  color: #11889c;
+  color: #0C98A7;
 }
 
 a:hover {
-  color: #11889c;
+  color: #183B56;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  color: #11889c;
+  color: #183B56;
 }
 
 /* Browser-specific elements */
