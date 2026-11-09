@@ -8,7 +8,7 @@ import { apiUrl } from "../apiConfig";
 import { useThemeMode } from "../context/theme-provider";
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
-import MaxunLogo from "../assets/maxunlogo.png";
+import { BrandLockup } from "../components/branding/BrandLockup";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -94,17 +94,8 @@ const Register = () => {
           width: "100%",
         }}
       >
-        <img
-          src={MaxunLogo}
-          alt="logo"
-          height={70} 
-          width={80}
-          style={{
-            marginBottom: 10,
-            borderRadius: "20%",
-            alignItems: "center",
-          }}
-        />
+        <BrandLockup dark={darkMode} />
+        <Typography variant="h6" sx={{ mt: 2, mb: 2, fontWeight: 750 }}>Registrace do datového centra</Typography>
         <TextField
           fullWidth
           label={t('register.email')}
@@ -152,7 +143,7 @@ const Register = () => {
           sx={{ color: darkMode ? "#ffffff" : "#333333" }}
         >
           {t('register.register_prompt')}{" "}
-          <Link to="/login" style={{ textDecoration: "none", color: "#ff33cc" }}>
+          <Link to="/login" style={{ textDecoration: "none", color: "#11889c" }}>
             {t('register.login_link')}
           </Link>
         </Typography>
