@@ -88,8 +88,8 @@ const Login = () => {
         onSubmit={submitForm}
         sx={{
           textAlign: "center",
-          backgroundColor: darkMode ? "#121111ff" : "#ffffff",
-          color: darkMode ? "#ffffff" : "#333333",
+          backgroundColor: darkMode ? "#143247" : "#FFFFFF",
+          color: darkMode ? "#FFFFFF" : "#183B56",
           padding: 3.5,
           borderRadius: 5,
           boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.2), 0px -5px 10px rgba(0, 0, 0, 0.15)",
@@ -102,7 +102,7 @@ const Login = () => {
       >
         <BrandLockup dark={darkMode} />
         <Typography variant="h6" sx={{ mt: 2, mb: 0.6, fontWeight: 750 }}>Datové a automatizační centrum</Typography>
-        <Typography variant="body2" sx={{ mb: 2, color: darkMode ? '#a7bfc5' : '#657c87', maxWidth: 360 }}>
+        <Typography variant="body2" sx={{ mb: 2, color: darkMode ? '#A5B2BC' : '#697985', maxWidth: 360 }}>
           Interní prostředí pro projekty Mlžidla.cz a výrobu HolmTec.
         </Typography>
         <TextField
@@ -149,7 +149,7 @@ const Login = () => {
         {(!import.meta.env.PROD || import.meta.env.VITE_ALLOW_REGISTRATION === 'true') && (
           <Typography variant="body2" align="center">
             {t('login.register_prompt')}{" "}
-            <Link to="/register" style={{ textDecoration: "none", color: "#11889c" }}>
+            <Link to="/register" style={{ textDecoration: "none", color: "#0C98A7" }}>
               {t('login.register_link')}
             </Link>
           </Typography>
