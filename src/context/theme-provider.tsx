@@ -49,7 +49,7 @@ const sharedInputOverrides = {
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: "#ff00c3",
+      main: "#11889c",
       contrastText: "#ffffff",
     },
   },
@@ -87,7 +87,7 @@ const lightTheme = createTheme({
         containedPrimary: {
           // Styles for 'contained' variant with 'primary' color
           "&:hover": {
-            backgroundColor: "#ff66d9",
+            backgroundColor: "#2da6b7",
           },
         },
         outlined: {
@@ -103,7 +103,7 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           "&:hover": {
-            color: "#ff00c3",
+            color: "#11889c",
           },
         },
       },
@@ -112,7 +112,7 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           // '&:hover': {
-          //   color: "#ff66d9",
+          //   color: "#2da6b7",
           // },
         },
       },
@@ -138,10 +138,10 @@ const lightTheme = createTheme({
           },
         },
         standardInfo: {
-          backgroundColor: "#fce1f4",
-          color: "#ff00c3",
+          backgroundColor: "#e3f3f5",
+          color: "#11889c",
           "& .MuiAlert-icon": {
-            color: "#ff00c3",
+            color: "#11889c",
           },
         },
       },
@@ -172,7 +172,7 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: "#ff00c3",
+      main: "#11889c",
       contrastText: "#ffffff",
     },
     error: {
@@ -231,15 +231,15 @@ const darkTheme = createTheme({
         },
         containedPrimary: {
           "&:hover": {
-            backgroundColor: "#ff66d9",
+            backgroundColor: "#2da6b7",
           },
         },
         outlined: {
-          borderColor: '#ff00c3',
-          color: '#ff00c3',
+          borderColor: '#11889c',
+          color: '#11889c',
           "&:hover": {
             // backgroundColor: 'rgba(255, 0, 195, 0.08)',
-            borderColor: '#ff66d9',
+            borderColor: '#2da6b7',
           },
           '&.MuiButton-outlinedError': {
             borderColor: '#f44336',
@@ -255,9 +255,9 @@ const darkTheme = createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#ff66d9',
+          color: '#2da6b7',
           "&:hover": {
-            color: "#ff00c3",
+            color: "#11889c",
           },
         },
       },
@@ -285,7 +285,7 @@ const darkTheme = createTheme({
           textTransform: "none",
           color: '#ffffff',
           "&.Mui-selected": {
-            color: '#ff00c3',
+            color: '#11889c',
           },
         },
       },
@@ -304,9 +304,9 @@ const darkTheme = createTheme({
         },
         standardInfo: {
           backgroundColor: "#080808ff",
-          color: "#ff00c3",
+          color: "#11889c",
           "& .MuiAlert-icon": {
-            color: "#ff00c3",
+            color: "#11889c",
           },
         },
       },
