@@ -17,7 +17,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate Docker Compose syntax with example settings
-        run: docker compose --env-file ENVEXAMPLE -f docker-compose.yml config --quiet
+        run: |
+          # docker-compose.yml explicitly references .env under env_file;
+          # create a temporary test-only file using the public example.
+          cp ENVEXAMPLE .env
+          trap 'rm -f .env' EXIT
+          docker compose --env-file ENVEXAMPLE -f docker-compose.yml config --quiet
 
       - name: Check required build files exist
         run: |
