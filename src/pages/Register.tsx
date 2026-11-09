@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { Box, Typography, TextField, Button, CircularProgress } from "@mui/material";
 import { useGlobalInfoStore } from "../context/globalInfo";
@@ -63,6 +63,10 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  if (import.meta.env.PROD && import.meta.env.VITE_ALLOW_REGISTRATION !== 'true') {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <Box
