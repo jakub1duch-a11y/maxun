@@ -1,5 +1,5 @@
 # Maxun / Mlžidla.cz × HolmTec
-# Deployment proposal ONLY. Apply after reviewing Render pricing, secrets, and smoke tests.
+# Deployment proposal ONLY. Requires billing, external S3 storage and authentication review.
 # This creates separate resources and does not change the Mlžidla.cz website.
 databases:
   - name: maxun-holmtec-postgres
@@ -9,24 +9,6 @@ databases:
     ipAllowList: []
 
 services:
-  - type: pserv
-    name: maxun-holmtec-minio
-    region: frankfurt
-    plan: starter
-    runtime: image
-    image:
-      url: docker.io/minio/minio:latest
-    dockerCommand: server /data --console-address ":9001"
-    disk:
-      name: maxun-minio-files
-      mountPath: /data
-      sizeGB: 10
-    envVars:
-      - key: MINIO_ROOT_USER
-        generateValue: true
-      - key: MINIO_ROOT_PASSWORD
-        generateValue: true
-
   - type: pserv
     name: maxun-holmtec-browser
     region: frankfurt
@@ -86,23 +68,20 @@ services:
         fromDatabase:
           name: maxun-holmtec-postgres
           property: password
+      # Use a maintained external S3-compatible object store.
+      # Credentials must be supplied in Render's secret environment settings.
       - key: MINIO_ENDPOINT
-        fromService:
-          type: pserv
-          name: maxun-holmtec-minio
-          property: host
+        sync: false
       - key: MINIO_PORT
-        value: "9000"
+        value: "443"
+      - key: MINIO_USE_SSL
+        value: "true"
+      - key: OBJECT_STORAGE_PUBLIC_READ
+        value: "false"
       - key: MINIO_ACCESS_KEY
-        fromService:
-          type: pserv
-          name: maxun-holmtec-minio
-          envVarKey: MINIO_ROOT_USER
+        sync: false
       - key: MINIO_SECRET_KEY
-        fromService:
-          type: pserv
-          name: maxun-holmtec-minio
-          envVarKey: MINIO_ROOT_PASSWORD
+        sync: false
       - key: BROWSER_WS_HOST
         fromService:
           type: pserv
