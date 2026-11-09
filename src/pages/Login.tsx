@@ -8,7 +8,7 @@ import { apiUrl } from "../apiConfig";
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { useThemeMode } from "../context/theme-provider";
-import MaxunLogo from "../assets/maxunlogo.png";
+import { BrandLockup } from "../components/branding/BrandLockup";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -100,8 +100,11 @@ const Login = () => {
           width: "100%",
         }}
       >
-        <img src={MaxunLogo} alt="logo" height={70} width={80} 
-        style={{ marginBottom: 10, borderRadius: "20%", alignItems: "center" }} />
+        <BrandLockup dark={darkMode} />
+        <Typography variant="h6" sx={{ mt: 2, mb: 0.6, fontWeight: 750 }}>Datové a automatizační centrum</Typography>
+        <Typography variant="body2" sx={{ mb: 2, color: darkMode ? '#a7bfc5' : '#657c87', maxWidth: 360 }}>
+          Interní prostředí pro projekty Mlžidla.cz a výrobu HolmTec.
+        </Typography>
         <TextField
           fullWidth
           label={t('login.email')}
@@ -145,7 +148,7 @@ const Login = () => {
         </Button>
         <Typography variant="body2" align="center">
           {t('login.register_prompt')}{" "}
-          <Link to="/register" style={{ textDecoration: "none", color: "#ff33cc" }}>
+          <Link to="/register" style={{ textDecoration: "none", color: "#11889c" }}>
             {t('login.register_link')}
           </Link>
         </Typography>
