@@ -1,7 +1,7 @@
 /* Base styles */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,17 +35,17 @@ select:-webkit-autofill:focus {
 }
 
 a {
-  color: #ff00c3;
+  color: #11889c;
 }
 
 a:hover {
-  color: #ff00c3;
+  color: #11889c;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  color: #ff00c3;
+  color: #11889c;
 }
 
 /* Browser-specific elements */
