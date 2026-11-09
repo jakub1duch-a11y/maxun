@@ -146,11 +146,16 @@ const Login = () => {
             t('login.button')
           )}
         </Button>
-        <Typography variant="body2" align="center">
-          {t('login.register_prompt')}{" "}
-          <Link to="/register" style={{ textDecoration: "none", color: "#11889c" }}>
-            {t('login.register_link')}
-          </Link>
+        {(!import.meta.env.PROD || import.meta.env.VITE_ALLOW_REGISTRATION === 'true') && (
+          <Typography variant="body2" align="center">
+            {t('login.register_prompt')}{" "}
+            <Link to="/register" style={{ textDecoration: "none", color: "#11889c" }}>
+              {t('login.register_link')}
+            </Link>
+          </Typography>
+        )}
+        <Typography variant="caption" sx={{ mt: 2, color: darkMode ? '#9fb6c1' : '#6f8290' }}>
+          Interní systém • Powered by Maxun (AGPL-3.0)
         </Typography>
       </Box>
     </Box>
