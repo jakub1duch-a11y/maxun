@@ -1,0 +1,40 @@
+name: Maxun deployment preflight
+
+on:
+  pull_request:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compose-validation:
+    name: Validate deployment prerequisites
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose syntax with example settings
+        run: docker compose --env-file ENVEXAMPLE -f docker-compose.yml config --quiet
+
+      - name: Check required build files exist
+        run: |
+          test -f Dockerfile.backend
+          test -f Dockerfile.frontend
+          test -f browser/Dockerfile
+          test -f package.backend.json
+          test -f package.frontend.json
+
+      - name: Prevent committed production environment files
+        run: |
+          if git ls-files | grep -E '(^|/)\.env(\.production)?$'; then
+            echo "::error::Production environment file is tracked in Git."
+            exit 1
+          fi
+
+      - name: Display scope of this check
+        run: |
+          echo "Compose syntax OK. No Docker images were built or deployed."
+          echo "Before production: configure secrets, build fork-specific images, run smoke and security tests."
