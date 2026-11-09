@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mlžidla a HolmTec">
-  <rect width="64" height="64" rx="15" fill="#16384a"/>
-  <path d="M11 47V17h8l13 18 13-18h8v30h-8V30L32 47 19 30v17z" fill="#f7fbfb"/>
-  <path d="M11 53h42" stroke="#24a4b3" stroke-width="4" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="15" fill="#183B56"/>
+  <path d="M11 47V17h8l13 18 13-18h8v30h-8V30L32 47 19 30v17z" fill="#FFFFFF"/>
+  <path d="M11 53h30" stroke="#0C98A7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M46 53h7" stroke="#D63D48" stroke-width="4" stroke-linecap="round"/>
 </svg>
