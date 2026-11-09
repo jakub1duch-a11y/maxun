@@ -8,8 +8,8 @@ export const BrandLockup: React.FC<{ compact?: boolean; dark?: boolean }> = ({
   compact = false,
   dark = false,
 }) => {
-  const ink = dark ? '#f5fbfc' : '#172f42';
-  const muted = dark ? '#94b9bd' : '#657c87';
+  const ink = dark ? '#FFFFFF' : '#183B56';
+  const muted = dark ? '#A5B2BC' : '#697985';
 
   return (
     <div
@@ -26,10 +26,12 @@ export const BrandLockup: React.FC<{ compact?: boolean; dark?: boolean }> = ({
       }}
     >
       <strong style={{ color: ink, fontSize: compact ? 16 : 23, fontWeight: 800 }}>
-        MLŽIDLA<span style={{ color: '#15849a' }}>.CZ</span>
+        MLŽIDLA<span style={{ color: '#0C98A7' }}>.CZ</span>
       </strong>
       <span aria-hidden="true" style={{ color: muted, fontWeight: 400, fontSize: compact ? 14 : 18 }}>×</span>
-      <strong style={{ color: ink, fontSize: compact ? 16 : 23, fontWeight: 700 }}>HolmTec</strong>
+      <strong style={{ color: ink, fontSize: compact ? 16 : 23, fontWeight: 700 }}>
+        HolmTec<span aria-hidden="true" style={{ color: '#D63D48' }}>.</span>
+      </strong>
     </div>
   );
 };
