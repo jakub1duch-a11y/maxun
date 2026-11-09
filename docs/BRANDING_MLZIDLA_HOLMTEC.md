@@ -6,7 +6,7 @@ Společný nástroj obou značek pro získávání a zpracování **oprávněně
 ### Styl
 - Název v UI: **MLŽIDLA.CZ × HolmTec**
 - Popisek: **Datové a automatizační centrum**
-- Barevné akcenty: tmavá modrá `#16384a`, modrozelená `#11889c`, bílá `#ffffff`
+- Schválený směr pěti barev: tmavě modrá `#183B56` (navigace, nadpisy), tyrkysová `#0C98A7` (aktivní prvky a odkazy), šedá `#697985` (popisky), bílá `#FFFFFF` (plochy), červená `#D63D48` (upozornění a drobné akcenty). Červenou používat střídmě. Barvy jsou pracovní hex interpretace zvoleného barevného směru, nikoli změřené hodnoty z oficiálního brand manuálu.
 - Písmo: Montserrat (nadpisy, s fallbackem), Inter (text, s fallbackem)
 - Výchozí česká lokalizace pro přihlášení, registraci a menu; ostatní texty se pro chybějící překlady zobrazují anglicky.
 - Wordmark v `src/components/branding/BrandLockup.tsx` je typografická **pracovní varianta**, nikoli ověřený oficiální grafický logotyp. Oficiální soubory log obou značek teprve musí být nasazeny.
