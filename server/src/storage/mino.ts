@@ -1,10 +1,13 @@
 import { Client } from 'minio';
 import Run from '../models/Run';
 
+const storageUseSSL = process.env.MINIO_USE_SSL === 'true';
+const allowPublicStorage = process.env.NODE_ENV !== 'production' || process.env.OBJECT_STORAGE_PUBLIC_READ === 'true';
+
 const minioClient = new Client({
   endPoint: process.env.MINIO_ENDPOINT ? process.env.MINIO_ENDPOINT : 'localhost',
-  port: parseInt(process.env.MINIO_PORT || '9000'),
-  useSSL: false,
+  port: parseInt(process.env.MINIO_PORT || (storageUseSSL ? '443' : '9000'), 10),
+  useSSL: storageUseSSL,
   accessKey: process.env.MINIO_ACCESS_KEY || 'minio-access-key',
   secretKey: process.env.MINIO_SECRET_KEY || 'minio-secret-key',
 });
@@ -30,8 +33,10 @@ async function fixMinioBucketConfiguration(bucketName: string) {
         },
       ],
     };
-    await minioClient.setBucketPolicy(bucketName, JSON.stringify(policyJSON));
-    console.log(`Public-read policy applied to bucket ${bucketName}.`);
+    if (allowPublicStorage) {
+      await minioClient.setBucketPolicy(bucketName, JSON.stringify(policyJSON));
+      console.log(`Public-read policy applied to bucket ${bucketName}.`);
+    }
   } catch (error) {
     console.error(`Error configuring bucket ${bucketName}:`, error);
     throw error;
@@ -80,7 +85,7 @@ async function createBucketWithPolicy(bucketName: string, policy = 'public-read'
       console.log(`Bucket ${bucketName} already exists.`);
     }
 
-    if (policy === 'public-read') {
+    if (policy === 'public-read' && allowPublicStorage) {
       // Apply public-read policy after confirming the bucket exists
       const policyJSON = {
         Version: "2012-10-17",
