@@ -85,8 +85,8 @@ const Register = () => {
         onSubmit={submitForm}
         sx={{
           textAlign: "center",
-          backgroundColor: darkMode ? "#121111ff" : "#ffffff",
-          color: darkMode ? "#ffffff" : "#333333",
+          backgroundColor: darkMode ? "#143247" : "#FFFFFF",
+          color: darkMode ? "#FFFFFF" : "#183B56",
           padding: 3.5,
           borderRadius: 5,
           boxShadow:
@@ -147,7 +147,7 @@ const Register = () => {
           sx={{ color: darkMode ? "#ffffff" : "#333333" }}
         >
           {t('register.register_prompt')}{" "}
-          <Link to="/login" style={{ textDecoration: "none", color: "#11889c" }}>
+          <Link to="/login" style={{ textDecoration: "none", color: "#0C98A7" }}>
             {t('register.login_link')}
           </Link>
         </Typography>
