@@ -23,6 +23,16 @@ interface AuthenticatedRequest extends Request {
 }
 
 router.post("/register", async (req, res) => {
+  // Private deployments must not expose open self-registration by default.
+  // Provision the first operator via a controlled one-time bootstrap, then
+  // keep ALLOW_PUBLIC_SIGNUP=false in production.
+  if (process.env.NODE_ENV === "production" && process.env.ALLOW_PUBLIC_SIGNUP !== "true") {
+    return res.status(403).json({
+      error: "REGISTRATION_DISABLED",
+      code: "register.error.registration_disabled",
+    });
+  }
+
   try {
     const { email, password } = req.body;
 
